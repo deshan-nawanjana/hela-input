@@ -9,6 +9,8 @@ const suggestions = await Hela.fetch("assets/objects/suggestions.json")
 new Vue({
   el: "#app",
   data: {
+    // ready state
+    ready: false,
     // text input mode
     mode: "single",
     // convert direction
@@ -176,5 +178,9 @@ new Vue({
       // clear suggestions
       this.clearSuggestions()
     }
+  },
+  mounted() {
+    // ready on mount
+    setTimeout(() => this.ready = true, 200)
   }
 })

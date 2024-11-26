@@ -8,6 +8,12 @@
 
 body {
   background-color: #222;
+  background-image: url(./assets/images/spinner.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80px auto;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   margin: 0px;
 }
@@ -35,7 +41,7 @@ body {
 }
 
 #app {
-  display: none;
+  display: flex;
   padding: var(--space);
   width: calc(100vw - var(--space) * 2);
   height: calc(100vh - var(--space) * 2);
@@ -45,6 +51,12 @@ body {
   position: fixed;
   left: 0px;
   top: 0px;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+#app[data-ready] {
+  opacity: 1;
 }
 
 .header {

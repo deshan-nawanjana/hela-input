@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="./assets/fonts/Ubuntu/Ubuntu.css">
   <link rel="preload" href="./assets/fonts/Ubuntu/Ubuntu-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="./assets/fonts/Ubuntu/Ubuntu-Medium.ttf" as="font" type="font/ttf" crossorigin>
+  <!-- preload : images -->
+  <link rel="preload" href="./assets/images/spinner.svg" as="image" type="image/svg+xml" />
   <!-- style -->
   <link rel="stylesheet" href="./index.css">
   <!-- libraries -->
@@ -39,7 +41,7 @@
   <title>Hela Input</title>
 </head>
 <body>
-  <div id="app" :data-theme="theme" :data-mode="mode" :style="{ display: 'flex' }">
+  <div id="app" :data-ready="ready" :data-theme="theme" :data-mode="mode">
     <div class="header">
       <div class="header-primary">
         <div class="switch mode">
