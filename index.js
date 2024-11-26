@@ -21,21 +21,20 @@ new Vue({
     suggest: { text: "", start: 0, end: 0, index: 0, list: [] }
   },
   methods: {
-    keyUp(event) {
+    input(event) {
       // check convert mode
       if (this.mode === "double") {
         // convert into output
         this.text.output = Hela.convert(this.direction, this.text.input)
       } else {
+        // get event key
+        const key = event.key || event.data
         // get target element
         const element = event.target
         // get caret position
         const position = element.selectionStart
         // check input character
-        if (event.key === "Escape") {
-          // clear suggestions
-          this.clearSuggestions()
-        } else if (event.key === " " || event.key === "Enter") {
+        if (key === " " || key === "Enter") {
           // clear suggestions
           this.clearSuggestions()
           // get last word end position
@@ -112,7 +111,10 @@ new Vue({
       // get suggest data
       const data = this.suggest
       // check event key
-      if (event.key === "Tab" || event.key === "Enter") {
+      if (event.key === "Escape") {
+        // clear suggestions
+        this.clearSuggestions()
+      } if (event.key === "Tab" || event.key === "Enter") {
         // prevent tab key event
         if (event.key === "Tab") { event.preventDefault() }
         // return if double mode

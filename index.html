@@ -85,8 +85,8 @@
     </div>
     <div class="content">
       <div class="editor">
-        <textarea class="text input" spellcheck="false" v-model="text.input" @keyup="keyUp" @keydown="keyDown" placeholder="Type here..." ref="input"></textarea>
-        <textarea class="text output" spellcheck="false" v-model="text.output" readonly v-if="mode === 'double'" placeholder="Output will be here..."></textarea>
+        <textarea class="text input" spellcheck="false" autocapitalize="off" v-model="text.input" @input="input" @keydown="keyDown" placeholder="Type here..." ref="input"></textarea>
+        <textarea class="text output" spellcheck="false" autocapitalize="off" v-model="text.output" readonly v-if="mode === 'double'" placeholder="Output will be here..."></textarea>
       </div>
     </div>
   </div>
