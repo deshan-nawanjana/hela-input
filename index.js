@@ -1,10 +1,13 @@
 import { Hela } from "./assets/modules/Hela.js"
 
+// base url
+const baseURL = (window.baseURL ?? "") + "assets/objects/"
+
 // initiate hela convert module
-await Hela.init("assets/objects/converters/")
+await Hela.init(baseURL + "converters/")
 
 // load suggestions array
-const suggestions = await Hela.fetch("assets/objects/suggestions.json")
+const suggestions = await Hela.fetch(baseURL + "suggestions.json")
 
 new Vue({
   el: "#app",
