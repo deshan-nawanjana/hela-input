@@ -9,17 +9,23 @@ await Hela.init(baseURL + "converters/")
 // load suggestions array
 const suggestions = await Hela.fetch(baseURL + "suggestions.json")
 
+// storage helpers
+const storage = {
+  setItem: (key, value) => localStorage.setItem(`HELA_INPUT_${key}`, value),
+  getItem: (key, fallback) => localStorage.getItem(`HELA_INPUT_${key}`) || fallback
+}
+
 new Vue({
   el: "#app",
   data: {
     // ready state
     ready: false,
     // text input mode
-    mode: "single",
+    mode: storage.getItem("mode", "single"),
     // convert direction
-    direction: "SIN_UNI",
+    direction: storage.getItem("direction", "SIN_UNI"),
     // interface theme
-    theme: "dark",
+    theme: storage.getItem("theme", "dark"),
     // input and output text
     text: { input: "", output: "" },
     // word suggestions
@@ -180,6 +186,18 @@ new Vue({
       this.replaceText(text + " ", this.suggest.start, this.suggest.end, 0)
       // clear suggestions
       this.clearSuggestions()
+    },
+    setMode(mode) {
+      storage.setItem("mode", mode)
+      this.mode = mode
+    },
+    setTheme(theme) {
+      storage.setItem("theme", theme)
+      this.theme = theme
+    },
+    setDirection(direction) {
+      storage.setItem("direction", direction)
+      this.direction = direction
     }
   },
   mounted() {

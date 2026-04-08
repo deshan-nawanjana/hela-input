@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- meta tags -->
   <meta charset="UTF-8">
@@ -43,45 +44,47 @@
   <!-- page title -->
   <title>Hela Input</title>
 </head>
+
 <body>
   <div id="app" :data-ready="ready" :data-theme="theme" :data-mode="mode">
     <div class="header">
       <div class="header-primary">
         <div class="switch mode">
-          <button class="switch-item" :data-active="mode === 'single'" @click="mode = 'single'">
+          <button class="switch-item" :data-active="mode === 'single'" @click="setMode('single')">
             Single Mode
           </button>
-          <button class="switch-item" :data-active="mode === 'double'" @click="mode = 'double'">
+          <button class="switch-item" :data-active="mode === 'double'" @click="setMode('double')">
             Double Mode
           </button>
         </div>
         <div class="header-space"></div>
         <div class="switch theme">
-          <button class="switch-item" :data-active="theme === 'light'" @click="theme = 'light'">
+          <button class="switch-item" :data-active="theme === 'light'" @click="setTheme('light')">
             Light
           </button>
-          <button class="switch-item" :data-active="theme === 'dark'" @click="theme = 'dark'">
+          <button class="switch-item" :data-active="theme === 'dark'" @click="setTheme('dark')">
             Dark
           </button>
         </div>
       </div>
       <div class="switch direction">
-        <button class="switch-item" :data-active="direction === 'SIN_UNI'" @click="direction = 'SIN_UNI'">
+        <button class="switch-item" :data-active="direction === 'SIN_UNI'" @click="setDirection('SIN_UNI')">
           SIN ⇒ UNI
         </button>
-        <button class="switch-item" :data-active="direction === 'ASCII_UNI'" @click="direction = 'ASCII_UNI'">
+        <button class="switch-item" :data-active="direction === 'ASCII_UNI'" @click="setDirection('ASCII_UNI')">
           ASCII ⇒ UNI
         </button>
-        <button class="switch-item" :data-active="direction === 'UNI_ASCII'" @click="direction = 'UNI_ASCII'">
+        <button class="switch-item" :data-active="direction === 'UNI_ASCII'" @click="setDirection('UNI_ASCII')">
           UNI ⇒ ASCII
         </button>
-        <button class="switch-item" :data-active="direction === 'SIN_ASCII'" @click="direction = 'SIN_ASCII'">
+        <button class="switch-item" :data-active="direction === 'SIN_ASCII'" @click="setDirection('SIN_ASCII')">
           SIN ⇒ ASCII
         </button>
       </div>
     </div>
     <div class="suggestions" v-if="mode === 'single'">
-      <button class="suggest-item" :data-active="index === suggest.index" v-for="(item, index) in suggest.list" @click="applySuggestion(index)">
+      <button class="suggest-item" :data-active="index === suggest.index" v-for="(item, index) in suggest.list"
+        @click="applySuggestion(index)">
         {{item}}
       </button>
       <div class="suggest-empty" v-if="suggest.list.length === 0">
@@ -90,10 +93,13 @@
     </div>
     <div class="content">
       <div class="editor">
-        <textarea class="text input" spellcheck="false" autocapitalize="off" v-model="text.input" @input="input" @keydown="keyDown" placeholder="Type here..." ref="input"></textarea>
-        <textarea class="text output" spellcheck="false" autocapitalize="off" v-model="text.output" readonly v-if="mode === 'double'" placeholder="Output will be here..."></textarea>
+        <textarea class="text input" spellcheck="false" autocapitalize="off" v-model="text.input" @input="input"
+          @keydown="keyDown" placeholder="Type here..." ref="input"></textarea>
+        <textarea class="text output" spellcheck="false" autocapitalize="off" v-model="text.output" readonly
+          v-if="mode === 'double'" placeholder="Output will be here..."></textarea>
       </div>
     </div>
   </div>
 </body>
+
 </html>
